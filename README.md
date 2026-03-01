@@ -1,36 +1,115 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## Withdraw Application
+
+Тестовое задание для Frontend Developer (React + Next.js)
+
+## 📋 О проекте
+
+Приложение для вывода средств (Withdraw) с устойчивым UI, безопасной архитектурой и полным покрытием тестами. Реализована страница создания заявки на вывод с валидацией, интеграцией с API, защитой от двойного сабмита и отображением статуса созданной заявки.
+
+## 🎯 Реализованные требования
+
+Core (обязательно)
+✅ Страница Withdraw с полями amount, destination и confirm checkbox
+
+✅ Валидация формы (amount > 0, destination не пустой)
+
+✅ Submit доступен только при валидной форме
+
+✅ Submit disabled во время запроса
+
+✅ API интеграция (POST /v1/withdrawals)
+
+✅ Idempotency key для защиты от дублирования
+
+✅ Понятное сообщение об ошибке 409 (Conflict)
+
+✅ Retry при сетевых ошибках с сохранением данных
+
+✅ Отображение созданной заявки и её статуса после успеха
+
+✅ Защита от двойного submit
+
+✅ Тесты (happy path, ошибка API, защита от двойного submit)
+
+Дополнительно
+✅ Восстановление последней заявки после перезагрузки (5 минут)
+
+✅ Мемоизация компонентов для оптимизации производительности
+
+✅ Гибкая система idempotency с UUID v4
+
+✅ Кастомные UI-компоненты (Input, Checkbox, Button)
+
+✅ Полная типизация TypeScript
 
 ## Getting Started
 
 First, run the development server:
 
+# Клонирование репозитория
+
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone <repository-url>
+cd withdraw-app
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+# Установка зависимостей
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+pnpm install
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+# Настройка переменных окружения
 
-## Learn More
+прописать env
 
-To learn more about Next.js, take a look at the following resources:
+# Запуск тестов
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+pnpm test
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+# Запуск в режиме разработки
 
-## Deploy on Vercel
+```bash
+pnpm dev
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Откройте http://localhost:3000/withdraw в браузере, чтобы увидеть результат.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Рекомендации для продакшена
+
+Токены: Хранить в httpOnly cookies
+
+CSRF: Добавить CSRF токены для всех изменяющих запросов
+
+Rate Limiting: Настроить ограничение запросов
+
+Content Security Policy: Настроить CSP заголовки
+
+Валидация: Всегда валидировать на сервере
+
+Idempotency: Обязательно использовать на критичных операциях
+
+## 🔄 API Интеграция
+
+# POST /v1/withdrawals
+
+```bash
+// Запрос
+{
+  "amount": number,
+  "destination": string,
+  "idempotency_key": string
+}
+```
+
+```bash
+// Запрос
+{
+  "id": string,
+  "status": string,
+  "amount": number,
+  "destination": string,
+}
+```
