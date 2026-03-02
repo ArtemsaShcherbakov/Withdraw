@@ -1,8 +1,7 @@
 "use client";
 
-import { RequestForWithdraw } from "@/components/WithdrawForm/components/RequestForWithdraw";
 import { InputUI, CheckboxUI, Button } from "@/components/UI";
-import { ErrorBanner } from "./components/ErrorBanner";
+import { RequestForWithdraw, ErrorBanner } from "./components";
 
 import { useWithdrawForm } from "./WithdrawForm.hooks";
 
