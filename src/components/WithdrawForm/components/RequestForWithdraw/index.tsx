@@ -1,17 +1,22 @@
-import { memo } from "react";
-
 import { useWithdrawalStore } from "@/store/withdrawalStore";
 
-import { createStatusColor } from "./RequestForWithdraw.utils";
+import { TStatusResponse } from "@/types/withdraw";
 
-const RequestForWithdrawComponent = () => {
+const STATUS_COLOR: Record<TStatusResponse, string> = {
+  completed: "bg-green-100 text-green-700",
+  failed: "bg-red-100 text-red-700",
+  processing: "bg-blue-100 text-blue-700",
+  pending: "bg-yellow-100 text-yellow-700",
+};
+
+const RequestForWithdraw = () => {
   const { currentWithdrawal } = useWithdrawalStore();
 
   if (!currentWithdrawal) return null;
 
   const { amount, destination, status: statusWithdrawal } = currentWithdrawal;
 
-  const statusClassName = createStatusColor(statusWithdrawal);
+  const statusClassName = STATUS_COLOR[statusWithdrawal];
 
   return (
     <div className="mt-8">
@@ -33,5 +38,4 @@ const RequestForWithdrawComponent = () => {
   );
 };
 
-export const RequestForWithdraw = memo(RequestForWithdrawComponent);
-RequestForWithdraw.displayName = "RequestForWithdraw";
+export { RequestForWithdraw };

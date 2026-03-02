@@ -3,7 +3,7 @@ import type { IWithdrawal } from "@/types/withdraw";
 export type WithdrawalStatus = "idle" | "loading" | "success" | "error";
 
 export interface IWithdrawalRequest {
-  amount: number;
+  amount: number | "";
   destination: string;
 }
 

@@ -42,18 +42,16 @@ Core (обязательно)
 
 ✅ Полная типизация TypeScript
 
-## Getting Started
+# Запуск проекта
 
-First, run the development server:
-
-# Клонирование репозитория
+## Клонирование репозитория
 
 ```bash
 git clone <repository-url>
 cd withdraw-app
 ```
 
-# Установка зависимостей
+## Установка зависимостей
 
 ```bash
 pnpm install
@@ -69,7 +67,7 @@ pnpm install
 pnpm test
 ```
 
-# Запуск в режиме разработки
+## Запуск в режиме разработки
 
 ```bash
 pnpm dev
@@ -77,7 +75,7 @@ pnpm dev
 
 Откройте http://localhost:3000/withdraw в браузере, чтобы увидеть результат.
 
-## Рекомендации для продакшена
+# Рекомендации для продакшена
 
 Токены: Хранить в httpOnly cookies
 
@@ -91,9 +89,9 @@ Content Security Policy: Настроить CSP заголовки
 
 Idempotency: Обязательно использовать на критичных операциях
 
-## 🔄 API Интеграция
+# 🔄 API Интеграция
 
-# POST /v1/withdrawals
+## POST /v1/withdrawals
 
 ```bash
 // Запрос
@@ -105,7 +103,7 @@ Idempotency: Обязательно использовать на критичн
 ```
 
 ```bash
-// Запрос
+// Ответ
 {
   "id": string,
   "status": string,
